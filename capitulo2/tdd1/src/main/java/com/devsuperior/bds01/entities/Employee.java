@@ -8,6 +8,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.beans.BeanUtils;
+
+import com.devsuperior.bds01.dto.EmployeeDTO;
+
 @Entity
 @Table(name = "tb_employee")
 public class Employee {
@@ -29,6 +33,11 @@ public class Employee {
 		this.id = id;
 		this.name = name;
 		this.email = email;
+		this.department = department;
+	}
+
+	public Employee(EmployeeDTO obj, Department department) {
+		BeanUtils.copyProperties(obj, this);
 		this.department = department;
 	}
 
